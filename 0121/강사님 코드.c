@@ -1,4 +1,4 @@
-// ex04.c - ì „í™”ë²ˆí˜¸ë¶€
+// ex04.c - ÀüÈ­¹øÈ£ºÎ
 #include<stdio.h>
 #include<stdlib.h>
 typedef struct phonebook {
@@ -6,13 +6,13 @@ typedef struct phonebook {
 	char number[14];
 }Contact;
 int main() {
-	Contact* pb[100] = { 0 };// ìµœëŒ€ 100ëª…ì˜ ì—°ë½ì²˜ë¥¼ ì €ì¥í•  ìˆ˜ ìˆëŠ” ë°°ì—´
+	Contact* pb[100] = { 0 };// ÃÖ´ë 100¸íÀÇ ¿¬¶ôÃ³¸¦ ÀúÀåÇÒ ¼ö ÀÖ´Â ¹è¿­
 	int menu, flag = 0;
 	char find[20];
 
 	while (1) {
-		printf("1. ì‹ ê·œ ë“±ë¡\n2. ê²€ìƒ‰\n3. ì „ì²´ ì¶œë ¥\n0. ì¢…ë£Œ\n\n");
-		printf("ë©”ë‰´ ì„ íƒ >>> ");
+		printf("1. ½Å±Ô µî·Ï\n2. °Ë»ö\n3. ÀüÃ¼ Ãâ·Â\n0. Á¾·á\n\n");
+		printf("¸Ş´º ¼±ÅÃ >>> ");
 		scanf("%d", &menu);
 		switch (menu) {
 			case 1: 
@@ -20,8 +20,8 @@ int main() {
 				for (int i = 0; i < 100; i++) {
 					if (pb[i] == 0) {
 						pb[i] = (Contact*)malloc(sizeof(Contact));
-						printf("ì´ë¦„ ì…ë ¥ : "); scanf("%s", pb[i]->name);
-						printf("ì „í™”ë²ˆí˜¸ ì…ë ¥ : "); scanf("%s", pb[i]->number);
+						printf("ÀÌ¸§ : "); scanf("%s", pb[i]->name);
+						printf("¹øÈ£ : "); scanf("%s", pb[i]->number);
 						break;
 					}
 				}
@@ -31,7 +31,7 @@ int main() {
 				flag = 0;
 				printf("\n\n");
 
-				printf("ê²€ìƒ‰í•  ì´ë¦„ ì…ë ¥ : ");
+				printf(" : ");
 				scanf("%s", find);
 
 				for (int i = 0; i < 100; i++) {
@@ -41,7 +41,7 @@ int main() {
 					}
 				}
 				if (flag == 0)
-					printf("[%s] : ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤\n", find);
+					printf("[%s] : Ã£À» ¼ö ¾ø½À´Ï´Ù.\n", find);
 				printf("\n\n");
 				break;
 			case 3: 
@@ -53,9 +53,9 @@ int main() {
 				}
 				printf("\n\n");
 				break;
-			case 0: printf("í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤"); return;
+			case 0: printf("ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù."); return;
 			default:
-				printf("ë‹¤ì‹œ ì„ íƒí•´ì£¼ì„¸ìš”\n");
+				printf("´Ù½Ã ¼±ÅÃÇØÁÖ¼¼¿ä\n");
 		}
 		system("pause");
 		system("cls");

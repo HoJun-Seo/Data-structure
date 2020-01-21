@@ -23,12 +23,14 @@ int main()
 		switch (menu) {
 		case 1:
 
-			pb[count] = (Contact*)malloc(sizeof(Contact));
+			
 			if (pb[i] == 0) { //대상이 비어있을 시
+				pb[count] = (Contact*)malloc(sizeof(Contact));
 				printf("\n등록할 사람의 정보를 입력하세요(최대 100명 입력 가능)\n");
 				printf("이름 : "); scanf("%s", pb[count]->name);
 				printf("번호 : "); scanf("%s", pb[count]->number);
 				count++;
+				break;
 			}
 			break;
 		case 2:
