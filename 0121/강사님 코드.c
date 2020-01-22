@@ -1,6 +1,7 @@
 // ex04.c - 전화번호부
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 typedef struct phonebook {
 	char name[20];
 	char number[14];
@@ -53,7 +54,7 @@ int main() {
 				}
 				printf("\n\n");
 				break;
-			case 0: printf("프로그램을 종료합니다."); return;
+			case 0: printf("프로그램을 종료합니다."); return 0;
 			default:
 				printf("다시 선택해주세요\n");
 		}
