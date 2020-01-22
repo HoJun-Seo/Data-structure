@@ -8,8 +8,8 @@ typedef struct student {
 	double avg;
 }STUDENT;
 void score(STUDENT* arr) {
-	printf("ì´ë¦„ : %s êµ­ì–´ : %d ì˜ì–´ : %d ìˆ˜í•™ : %d \n", arr->name, arr->kor, arr->eng, arr->math);
-	printf("í•©ê³„ : %d í‰ê·  : %lf\n", arr->sum, arr->avg);
+	printf("ÀÌ¸§ : %s ±¹¾î : %d ¿µ¾î : %d ¼öÇĞ : %d \n", arr->name, arr->kor, arr->eng, arr->math);
+	printf("ÃÑÁ¡ : %d Æò±Õ : %lf\n", arr->sum, arr->avg);
 }
 void ListAll(STUDENT** arr)
 {
@@ -17,16 +17,15 @@ void ListAll(STUDENT** arr)
 	for (int i = 0; i < 100; i++)
 	{
 		if (arr[i] != 0 && sizeof(arr[i]) > 0) {
-			printf("ì´ë¦„ : %s\n", arr[i]->name);
-			printf("êµ­ì–´ : %d ì˜ì–´ : %d ìˆ˜í•™ : %d \n", arr[i]->kor, arr[i]->eng, arr[i]->math);
-			printf("í•©ê³„ : %d í‰ê·  : %lf\n", arr[i]->sum, arr[i]->avg);
-			printf("ë“±ìˆ˜ : %d\n", arr[i]->rank);
+			printf("ÀÌ¸§ : %s\n", arr[i]->name);
+			printf("±¹¾î : %d ¿µ¾î : %d ¼öÇĞ : %d \n", arr[i]->kor, arr[i]->eng, arr[i]->math);
+			printf("ÃÑÁ¡ : %d Æò±Õ : %lf\n", arr[i]->sum, arr[i]->avg);
+			printf("µî¼ö : %d\n", arr[i]->rank);
 		}
 	}
 	printf("\n\n");
 }
 void orderBySumDesc(STUDENT** arr) {
-	// ì´ì  ê¸°ì¤€ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬
 	for (int i = 0; i < 100 && arr[i] != 0; i++) {
 		for (int j = i; j < 100 && arr[j] != 0; j++) {
 			if (arr[i]->sum < arr[j]->sum) {
@@ -45,13 +44,12 @@ void Rank(STUDENT** arr) {
 	{
 		arr[i]->rank = 1;
 		for (int j = 0; j < 100 && arr[j] != 0; j++) {
-			if (arr[i]->sum < arr[j]->sum) { //ë‚˜ ë³´ë‹¤ ë” ë†’ì€ ì ìˆ˜ê°€ ìˆìœ¼ë©´
-				arr[i]->rank += 1; //ë‚´ ë“±ìˆ˜ì˜ ìˆ«ìê°€ ì¦ê°€(ìˆœìœ„ê°€ ë–¨ì–´ì§)
+			if (arr[i]->sum < arr[j]->sum) { 
+				arr[i]->rank += 1; 
 			}
 		}
 	}
 }
-
 
 
 int main(void)
@@ -62,9 +60,9 @@ int main(void)
 	char name[20];
 	STUDENT* arr[100] = { 0 };
 	while (1) {
-		printf("í•™ìƒ ì •ë³´ ë“±ë¡ ë° ì„±ì  ê´€ë¦¬ í”„ë¡œê·¸ë¨ì…ë‹ˆë‹¤.\n");
-		printf("1. ì‹ ê·œ ë“±ë¡\n2. ê²€ìƒ‰\n3. ì •ë³´ ìˆ˜ì •\n4. ì •ë³´ ì‚­ì œ\n5. ì ìˆ˜ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬\n6. ë“±ìˆ˜ ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬\n0. ì¢…ë£Œ\n");
-		printf("ë©”ë‰´ ì„ íƒ >>> "); scanf("%d", &menu);
+		printf("ÇĞ»ı Á¤º¸ µî·Ï ¹× ¼ºÀû °ü¸® ÇÁ·Î±×·¥ ÀÔ´Ï´Ù.\n");
+		printf("1. ½Å±Ô µî·Ï\n2. °Ë»ö\n3. Á¤º¸ ¼öÁ¤\n4. Á¤º¸ »èÁ¦\n5. Á¡¼ö ³»¸²Â÷¼ø Á¤·Ä\n6. µî¼ö ¿À¸§Â÷¼ø Á¤·Ä\n0. Á¾·á\n");
+		printf("¸Ş´º ¼±ÅÃ >>> "); scanf("%d", &menu);
 		switch (menu) {
 		case 1:
 			printf("\n\n");
@@ -72,11 +70,11 @@ int main(void)
 			{
 				if (arr[i] == 0) {
 					arr[i] = (STUDENT*)malloc(sizeof(STUDENT));
-					printf("ë“±ë¡í•  ì‚¬ëŒì˜ ì •ë³´ë¥¼ ì…ë ¥í•˜ì„¸ìš”(ìµœëŒ€ 100ëª… ì…ë ¥ ê°€ëŠ¥)\n");
-					printf("ì´ë¦„ : "); scanf("%s", arr[i]->name);
-					printf("êµ­ì–´ : "); scanf("%d", &arr[i]->kor);
-					printf("ì˜ì–´ : "); scanf("%d", &arr[i]->eng);
-					printf("ìˆ˜í•™ : "); scanf("%d", &arr[i]->math);
+					printf("µî·ÏÇÒ »ç¶÷ÀÇ Á¤º¸¸¦ ÀÔ·ÂÇÏ¼¼¿ä(ÃÖ´ë 100¸í ÀÔ·Â °¡´É)\n");
+					printf("ÀÌ¸§ : "); scanf("%s", arr[i]->name);
+					printf("±¹¾î : "); scanf("%d", &arr[i]->kor);
+					printf("¿µ¾î : "); scanf("%d", &arr[i]->eng);
+					printf("¼öÇĞ : "); scanf("%d", &arr[i]->math);
 					arr[i]->sum = arr[i]->kor + arr[i]->eng + arr[i]->math;
 					arr[i]->avg = arr[i]->sum / 3;
 					break;
@@ -87,47 +85,47 @@ int main(void)
 		case 2:
 			flag = 0;
 			printf("\n\n");
-			printf("ê²€ìƒ‰í•  ì‚¬ëŒì˜ ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš” : ");
+			printf("°Ë»öÇÒ »ç¶÷ÀÇ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä : ");
 			scanf("%s", name);
 			for (i = 0; i < 100; i++)
 			{
 				if (arr[i] != 0 && strcmp(name, arr[i]->name) == 0) {
 					flag = 1;
-					printf("ê²€ìƒ‰ê²°ê³¼\n");
+					printf("°Ë»ö°á°ú\n");
 					score(arr[i]);
 				}
 			}
 			if (flag == 0)
-				printf("ëŒ€ìƒì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\n");
+				printf("´ë»óÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.\n");
 			printf("\n\n");
 			break;
 		case 3:
 			flag = 0;
 			printf("\n\n");
-			printf("ì •ë³´ë¥¼ ìˆ˜ì •í•  ì‚¬ëŒì˜ ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš” : ");
+			printf("Á¤º¸¸¦ ¼öÁ¤ÇÒ »ç¶÷ÀÇ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä : ");
 			scanf("%s", name);
 			for (i = 0; i < 100; i++)
 			{
 				if (arr[i] != 0 && strcmp(name, arr[i]->name) == 0) {
 					flag = 1;
-					printf("1. êµ­ì–´\n2. ì˜ì–´\n3. ìˆ˜í•™\n");
-					printf("ìˆ˜ì •í•  ê³¼ëª©ì„ ì„ íƒí•˜ì„¸ìš” : ");
+					printf("1. ±¹¾î\n2. ¿µ¾î\n3. ¼öÇĞ\n");
+					printf("¼öÁ¤ÇÒ °ú¸ñÀ» ¼±ÅÃÇÏ¼¼¿ä : ");
 					scanf("%d", &upt);
 					switch (upt) {
 					case 1 :
-						printf("êµ­ì–´ ì ìˆ˜ ìˆ˜ì • : ");
+						printf("±¹¾î Á¡¼ö ¼öÁ¤ : ");
 						scanf("%d", &arr[i]->kor);
 						arr[i]->sum = arr[i]->kor + arr[i]->eng + arr[i]->math;
 						arr[i]->avg = arr[i]->sum / 3;
 						break;
 					case 2:
-						printf("ì˜ì–´ ì ìˆ˜ ìˆ˜ì • : ");
+						printf("¿µ¾î Á¡¼ö ¼öÁ¤ : ");
 						scanf("%d", &arr[i]->eng);
 						arr[i]->sum = arr[i]->kor + arr[i]->eng + arr[i]->math;
 						arr[i]->avg = arr[i]->sum / 3;
 						break;
 					case 3:
-						printf("ìˆ˜í•™ ì ìˆ˜ ìˆ˜ì • : ");
+						printf("¼öÇĞ Á¡¼ö ¼öÁ¤ : ");
 						scanf("%d", &arr[i]->math);
 						arr[i]->sum = arr[i]->kor + arr[i]->eng + arr[i]->math;
 						arr[i]->avg = arr[i]->sum / 3;
@@ -137,7 +135,7 @@ int main(void)
 			}
 			break;
 		case 4:
-			printf("ì‚­ì œ ì‹œí‚¬ ëŒ€ìƒì˜ ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš” : ");
+			printf("»èÁ¦ ½ÃÅ³ ´ë»óÀÇ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä : ");
 			scanf("%s", name);
 			for (i = 0; i < 100; i++)
 			{
@@ -148,23 +146,23 @@ int main(void)
 			}
 			break;
 		case 5:
-			printf("í•©ì‚° ì ìˆ˜ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì •ë ¬ë©ë‹ˆë‹¤.\n");
+			printf("ÇÕ»ê Á¡¼ö¸¦ ±âÁØÀ¸·Î Á¤·ÄµË´Ï´Ù.\n");
 			orderBySumDesc(arr);
 			ListAll(arr);
 			break;
 		case 6:
-			printf("ë“±ìˆ˜ë¥¼ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬í•©ë‹ˆë‹¤.\n");
+			printf("µî¼ö¸¦ ¿À¸§Â÷¼øÀ¸·Î Á¤·ÄÇÕ´Ï´Ù.\n");
 			orderBySumDesc(arr);
 			Rank(arr);
 			ListAll(arr);
 			break;
 
 		case 0:
-			printf("í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤\n"); return 0;
+			printf("ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.\n"); return 0;
 		default:
-			printf("ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤.\n");
+			printf("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.\n");
 		}
 		system("pause");
-		system("cls"); //ì •ë³´ ì œê±°
+		system("cls"); //Á¤º¸Á¦°Å
 	}
 }
