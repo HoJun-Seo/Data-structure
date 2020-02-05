@@ -21,7 +21,7 @@ void Enqueue(Queue** front, Queue** rear, char* food)
 {
 	if (*front == NULL) {
 		(*front) = getNode();
-		*rear = *front; //rear¿¡ frontÀÇ ÂüÁ¶ °ªÀ» ´ëÀÔÇÑ´Ù.
+		*rear = *front; //rearì— frontì˜ ì°¸ì¡° ê°’ì„ ëŒ€ì…í•œë‹¤.
 	}
 	else {
 		(*rear)->link = getNode();
@@ -34,11 +34,13 @@ void Enqueue(Queue** front, Queue** rear, char* food)
 int dequeue(Queue** front, Queue** rear)
 {
 	Queue* tmp = (*front);
-	int data = (*front)->data;
-	(*front) = (*front)->link; //´ÙÀ½ µ¥ÀÌÅÍÀÇ À§Ä¡¸¦ °¡¸®Å²´Ù.
+	int data = 0;
+	if (tmp == 0) return data;
+	data = (*front)->data;
+	(*front) = (*front)->link; //ë‹¤ìŒ ë°ì´í„°ì˜ ìœ„ì¹˜ë¥¼ ê°€ë¦¬í‚¨ë‹¤.
 	if (*front == NULL) *rear = *front;
-		//front°¡ NULL ÀÌ¸é == Å¥°¡ ºñ¾úÀ¸¸é
-		//rear µµ NULL ·Î º¯°æÇØÁØ´Ù.
+		//frontê°€ NULL ì´ë©´ == íê°€ ë¹„ì—ˆìœ¼ë©´
+		//rear ë„ NULL ë¡œ ë³€ê²½í•´ì¤€ë‹¤.
 	free(tmp);
 	return data;
 }
@@ -55,50 +57,49 @@ int main()
 {
 	int i = 0;
 	int menu;
+	int str;
 	Queue* front = NULL;
 	Queue* rear = NULL;
 	FOOD food[100];
 	
 	while(1){
-		printf("\n\n1. ÁÖ¹® ÀÔ·Â\n");
-		printf("2. ÃÖ±Ù ¸Ş´º ¿Ï¼º ¾Ë¸²\n");
-		printf("3. ¿ì¼± ¿¹¾à\n");
-		printf("4. ¿µ¾÷ Á¾·á\n\n");
+		printf("\n\tFRONT - ");
+		printQueue(front);
+		printf("REAR\n");
+		printf("\n\n1. ì£¼ë¬¸ ì…ë ¥\n");
+		printf("2. ìµœê·¼ ë©”ë‰´ ì™„ì„± ì•Œë¦¼\n");
+		printf("3. ì˜ì—… ì¢…ë£Œ\n\n");
 
-		printf("ÀÔ·Â > ");
+		printf("ì…ë ¥ > ");
 		scanf("%d", &menu);
 
 		switch (menu)
 		{
 
 		case 1:
-			printf("ÁÖ¹®ÇÒ ¸Ş´º¸¦ ÀÔ·Â : ");
+			printf("ì£¼ë¬¸í•  ë©”ë‰´ë¥¼ ì…ë ¥ : ");
 			if (food[i].food != NULL) {
 				scanf("%s", food[i].food);
 				Enqueue(&front, &rear, food[i].food);
 				i++;
 			}
-			else printf("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.\n");
+			else printf("ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤.\n");
 			break;
 		case 2:
-			if (front->data == NULL) printf("ÁÖ¹® ³»¿ªÀÌ ¾ø½À´Ï´Ù.\n");
-			printf("%s ³ª¿Ô½À´Ï´Ù.\n", dequeue(&front, &rear));
+			str = dequeue(&front, &rear);
+			if (str == 0) printf("ì£¼ë¬¸ ë‚´ì—­ì´ ì—†ìŠµë‹ˆë‹¤.\n");
+			else printf("%s ë‚˜ì™”ìŠµë‹ˆë‹¤.\n", str);
 			break;
 		case 3:
-
-		case 4:
-			printf("¿µ¾÷ÀÌ Á¾·áµÇ¾ú½À´Ï´Ù.");
+			printf("ì˜ì—…ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 			return 0;
 
 		default:
-			printf("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.\n");
+			printf("ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤.\n");
 			break;
 		}
-		printf("\n\n\n");
-		printf("ÁÖ¹®¸ñ·Ï : ");
-		printf("\nFRONT - ");
-		printQueue(front);
-		printf("REAR\n");
+		system("pause");
+		system("cls");
 
 	}
 	
