@@ -1,4 +1,4 @@
-//ex01.c Tree Å×½ºÆ® ±âº»°ª ºÎ¿© ÀÌÈÄ ÁøÇàÇÏ±â
+//ex01.c Tree í…ŒìŠ¤íŠ¸ ê¸°ë³¸ê°’ ë¶€ì—¬ ì´í›„ ì§„í–‰í•˜ê¸°
 #include<stdio.h>
 #include<stdlib.h>
 typedef struct node
@@ -55,15 +55,32 @@ Tree* findNode(Tree* root, int data)
 
 void deleteNode(Tree** root, int data)
 {
+	Tree* find = findNode(*root, data);
+	Tree* tmp = getNode();
 	if ((*root)->data == data)
 	{
-		if ((*root)->left == NULL && (*root)->right == NULL) { //¸»´Ü ³ëµå ÀÏ °æ¿ì
+		if ((*root)->left == NULL && (*root)->right == NULL) { //ë§ë‹¨ ë…¸ë“œ ì¼ ê²½ìš°
 			free((*root));
 			(*root) = NULL;
 		}
+		//í•˜ìœ„ ë…¸ë“œê°€ í•œìª½ë§Œ ìžˆì„ ê²½ìš°(ì™¼ìª½ ë˜ëŠ” ì˜¤ë¥¸ìª½)
+		else if ((*root)->left != NULL && (*root)->right == NULL)
+		{
+			tmp = find;
+			(*root) = find->left;
+			free(tmp);
+			tmp = NULL;
+		}
+		else if ((*root)->left == NULL && (*root)->right != NULL)
+		{
+			tmp = find;
+			(*root) = find->right;
+			free(tmp);
+			tmp = NULL;
+		}
 	}
-	//ÇÏÀ§ ³ëµå°¡ ÇÑÂÊ¸¸ ÀÖÀ» °æ¿ì(¿ÞÂÊ ¶Ç´Â ¿À¸¥ÂÊ)
-	//ÇÏÀ§ ³ëµå°¡ ¾çÂÊ ´Ù ÀÖÀ» °æ¿ì(¿ÞÂÊ, ¿À¸¥ÂÊ)
+	
+	//í•˜ìœ„ ë…¸ë“œê°€ ì–‘ìª½ ë‹¤ ìžˆì„ ê²½ìš°(ì™¼ìª½, ì˜¤ë¥¸ìª½)
 	else if ((*root)->data > data)
 		deleteNode(&(*root)->left, data);
 	else if ((*root)->data < data)
@@ -103,23 +120,23 @@ int main()
 			scanf("%d", &data);
 			find = findNode(root, data);
 			if (find != NULL)
-				printf("%d : µ¥ÀÌÅÍ¸¦ Ã£¾Ò½À´Ï´Ù. \n", find->data);
-			else printf("%d : µ¥ÀÌÅÍ¸¦ Ã£Áö ¸øÇß½À´Ï´Ù.\n", data);
+				printf("%d : ë°ì´í„°ë¥¼ ì°¾ì•˜ìŠµë‹ˆë‹¤. \n", find->data);
+			else printf("%d : ë°ì´í„°ë¥¼ ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n", data);
 			break;
 		case 3 :
 			printf("=== deleteNode ===\n\n");
 			printf("delete data : ");
 			scanf("%d", &data);
 			deleteNode(&root, data);
-			//1. ¸»´Ü ³ëµåÀÌ¸é, °ð¹Ù·Î »èÁ¦(free)
-			//2. ÇÏÀ§ ³ëµå°¡ ÇÏ³ª¸¸ ÀÖÀ¸¸é(¿ÞÂÊ or ¿À¸¥ÂÊ), ´ÙÀ½ ³ëµå¸¦ °¡¸®Å°°Ô ÇÏ°í »èÁ¦
-			//3. ÇÏÀ§ ³ëµå°¡ ¾çÂÊ´Ù ÀÖÀ¸¸é(¿ÞÂÊ and ¿À¸¥ÂÊ), ´ëÃ¼°ªÀ» ¼±ÃâÇÏ°í »èÁ¦
+			//1. ë§ë‹¨ ë…¸ë“œì´ë©´, ê³§ë°”ë¡œ ì‚­ì œ(free)
+			//2. í•˜ìœ„ ë…¸ë“œê°€ í•˜ë‚˜ë§Œ ìžˆìœ¼ë©´(ì™¼ìª½ or ì˜¤ë¥¸ìª½), ë‹¤ìŒ ë…¸ë“œë¥¼ ê°€ë¦¬í‚¤ê²Œ í•˜ê³  ì‚­ì œ
+			//3. í•˜ìœ„ ë…¸ë“œê°€ ì–‘ìª½ë‹¤ ìžˆìœ¼ë©´(ì™¼ìª½ and ì˜¤ë¥¸ìª½), ëŒ€ì²´ê°’ì„ ì„ ì¶œí•˜ê³  ì‚­ì œ
 			break;
 		case 9 :
 			system("cls");
 			break;
 		case 0 :
-			printf("Á¾·áÇÕ´Ï´Ù.\n");
+			printf("ì¢…ë£Œí•©ë‹ˆë‹¤.\n");
 			return;
 		}
 	}
